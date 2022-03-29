@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Student Enrollment System</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body onload="loadStudents">
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>
+                Student enrollment system
+            </h1>
+            <h2>PES1UG19CS198</h2>
+        </div>
+        <div>
+            <div  class="text-left">
+                        <h3 style="width:fit-content;background-color: darkolivegreen; color: white;">Enrolled Students</h3>
+            </div>
+            <div style="display: flex;flex-wrap: wrap;"id = "student-display" class="row">
+                    <div style="display: flex;flex-direction: column;margin:10px;padding: 10px;background-color: darkslategray;" th:each="student: ${students}">
+                            <h3 style="color: white;" class="text-left" th:text="${student.name}"></h3>
+                            <h3 style ="color:white;" class="text-left" th:text="${student.email}"></h3>
+                    </div>
+            </div>
+        </div>
+        <div margin="10px">
+            <h2 style="width:fit-content;background-color: darkolivegreen; color: white;">
+                Add new Student
+            </h2>
+            <form method="post" action="/api/v1/student">
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                      <input name="name" type="text" class="form-control" id="inputName" placeholder="Name">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                      <input name="email" type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputDate" class="col-sm-2 col-form-label">Date of Birth</label>
+                    <div class="col-sm-10">
+                      <input name="dob" type="date" class="form-control" id="inputDate" placeholder="Date">
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-dark">
+                        Add Student
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
